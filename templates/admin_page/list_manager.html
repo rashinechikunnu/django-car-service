@@ -1,0 +1,42 @@
+{% extends "admin_page/admin.html" %}
+{% comment %} MANAGERS DATA LIST  {% endcomment %}
+
+<link rel="stylesheet" href="">
+
+{% block manager_list %}
+                      
+
+<table class="table table-bordered">
+    <thead>
+      <tr>
+        <th scope="row">serial no</th>
+
+        <th scope="col">employee_no</th>
+        <th scope="col">name</th>
+        <th scope="col">contact</th>
+        <th scope="col">email</th>
+        <th scope="col">Edit / Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+        {% for list in list_manager  %}
+          
+        
+      <tr>
+        <td>{{forloop.counter}}
+        </td>
+            <td>{{list.employee_no}}</td>
+            <td>{{list.Name}}</td>
+         
+            <td>{{list.contact}}</td>
+            <td>{{list.email}}</td>
+            <td><a href="{% url 'views_change' list.id %}">edit</a> / <a href="{% url 'delete_manager_data' list.id %}">Delete</a></td>
+          
+    
+      </tr>
+{% endfor %}
+</tbody>
+</table>
+      
+                      
+{% endblock manager_list %}

@@ -1,0 +1,27 @@
+{% extends "admin_page/admin.html" %}
+{% block manager_list %}
+                      
+<table class="table table-dark">
+    <thead>
+      <tr>
+        <th scope="col"></th>
+        <th scope="col">Date</th>
+        <th scope="col">starting time</th>
+        <th scope="col">ending time</th>
+        <th scope="col">delete</th>
+      </tr>
+    </thead>
+    <tbody>
+        {% for xy in schedule_views %}
+      <tr>
+        <td scope="row">{{forloop.counter}}</td>
+        <td>{{xy.date}}</td>
+        <td>{{xy.starting_time}}</td>
+        <td>{{xy.ending_time}}</td>
+        <td><a href="{% url 'schedule_delete' xy.id %}"> delete</a></td>
+      </tr>
+      {% endfor %}
+    </table>
+
+                      
+{% endblock manager_list %}

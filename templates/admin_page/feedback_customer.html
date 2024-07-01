@@ -1,0 +1,47 @@
+{% extends "admin_page/admin.html" %}
+
+
+{% block manager_list %}
+
+<style>
+    table, th, td {
+      border:1px solid black;
+    }
+    </style>
+    <body>
+    
+    
+    <table style="width:100%">
+      <tr>
+
+        <th>Name</th>
+        <th>Phone number</th>
+        <th>feedback</th>
+        <th>date</th>
+        <th>replay</th>
+       
+      </tr>
+      {% for fdbk in fdb_customer %}
+      <tr>
+        <td>{{fdbk.user}}</td>
+        <td>{{fdbk.user.phone_number}}</td>
+        <td>{{fdbk.text_me}}</td>
+        <td>{{fdbk.date}}</td>
+      
+          
+          <td>{% if fdbk.replay == None %}
+            <a href="{% url "replay_customer" fdbk.id%}"> replay</a>
+            {% else %}
+            {{fdbk.replay}}
+            {% endif %}
+    
+        </td>
+        
+    
+        
+      </tr>
+      {% endfor %}
+     
+    </table>
+    
+{% endblock manager_list %}

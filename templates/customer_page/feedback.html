@@ -1,0 +1,13 @@
+{% extends "customer_page/customer.html" %}
+{%load crispy_forms_tags %}
+{% block feedback %}
+<div  >
+    <h1>feedback</h1>
+    <form action="" method="post" >
+    {% csrf_token %}
+    {{feed_back|crispy}}
+   
+    <button style="margin-top: 100px; background-color: rgb(61, 228, 38); color: white;" type="submit">submit</button>
+</form>
+</div>
+{% endblock feedback %}

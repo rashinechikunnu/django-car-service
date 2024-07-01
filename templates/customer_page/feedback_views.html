@@ -1,0 +1,44 @@
+{% extends "customer_page/customer.html" %}
+{% block feedback %}
+                          
+
+
+
+<style>
+table, th, td {
+  border:1px solid black;
+}
+</style>
+<body>
+
+<h2>customer all feedback</h2>
+
+<table style="width:100%">
+  <tr>
+   
+    <th>feedback</th>
+    <th>date</th>
+    <th>replay</th>
+  </tr>
+  {% for f_views in feed_view %}
+  <tr>
+   
+    <td>{{f_views.text_me}}</td>
+    <td>{{f_views.date}}</td>
+    <td>{% if f_views.replay == None %}
+        <a href="#">No replay</a>
+        {% else %}
+        {{f_views.replay}}
+        {% endif %}
+
+    </td>
+  </tr>
+  {% endfor %}
+ 
+</table>
+
+
+
+
+{% endblock feedback %}
+

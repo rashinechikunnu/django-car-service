@@ -1,0 +1,51 @@
+{% extends "manager_page/manager.html" %}
+
+
+{% block manager_page %}
+<table class="table table-dark">
+    <thead>
+      <tr>
+        
+        <th scope="col">No</th>
+        <th scope="col">starting time</th>
+        <th scope="col">ending time</th>
+        <th scope="col">approved/reject</button></th>
+      </tr>
+    </thead>
+    <tbody>
+        {% for zx  in customer_book_view %}
+      <tr>
+        <td scope="row">{{forloop.counter}}</td>
+       
+        <td>{{zx.schedule.starting_time}}</td>
+        <td>{{zx.schedule.ending_time}}</td>
+        
+
+        <td>
+            {% if zx.status == 0 %}
+            <button>approve</button>/
+            <button>reject</button>
+            
+            {% elif zx.status == 1 %}
+            <p>approve</p>
+            
+            
+            {% else  %}
+            
+            <p>reject</p>
+            {% endif %} 
+    
+        </td>
+
+        
+       </td>
+      </tr>
+      {% endfor %}
+    </table>
+
+
+
+{% endblock manager_page %}
+
+
+

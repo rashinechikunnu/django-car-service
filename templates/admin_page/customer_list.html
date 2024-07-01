@@ -1,0 +1,38 @@
+{% extends "admin_page/admin.html" %}
+
+{% block manager_list %}
+
+<table class="table table-bordered">
+    <thead>
+      <tr>
+        <th scope="row">serial no</th>
+
+        <th scope="col">Name</th>
+        <th scope="col">Phone Number</th>
+        <th scope="col">email</th>
+        <th scope="col">license_no </th>
+        <th scope="col">Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+        {% for c_list in custm_data_list  %}
+          
+        
+      <tr>
+        <td>{{forloop.counter}}
+        </td>
+            
+            <td>{{c_list.Name}}</td>
+            <td>{{c_list.phone_number}}</td>
+            <td>{{c_list.email}}</td>
+            <td>{{c_list.license_no}}</td>
+
+            <td><a href="{% url 'delete_customer_data' c_list.id %}">Delete</a></td>
+          
+    
+      </tr>
+
+
+{% endfor %}
+
+{% endblock %}

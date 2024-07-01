@@ -1,0 +1,51 @@
+{% extends "customer_page/customer.html" %}
+{% block feedback %}
+
+
+
+
+
+<table class="table table-dark">
+    <thead>
+      <tr>
+        
+        <th scope="col">No</th>
+        <th scope="col">starting time</th>
+        <th scope="col">ending time</th>
+        <th scope="col">status</th>
+      </tr>
+    </thead>
+    <tbody>
+        {% for cl in booking_status %}
+      <tr>
+        <td scope="row">{{forloop.counter}}</td>
+       
+        <td>{{cl.schedule.starting_time}}</td>
+        <td>{{cl.schedule.ending_time}}</td>
+       
+
+        <td>
+            {% if cl.status == 0 %}
+            <p style="color: yellow;">Pending<p>
+            
+            {% elif cl.status == 1 %}
+            <p style="color: green;">approved<p>
+            
+            {% else  %}
+            <p style="color: red;">rejected<p>
+
+            {% endif %}
+    
+        </td>
+
+        
+       </td>
+      </tr>
+      {% endfor %}
+    </table>
+
+                      
+   
+                          
+    {% endblock feedback %}
+

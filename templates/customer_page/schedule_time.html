@@ -1,0 +1,43 @@
+{% extends "customer_page/customer.html" %}
+{% block feedback %}
+
+
+
+{% for message in messages %}
+
+<div class = "alert alert-primary" role ='alert'>
+   hello {{request.user}} You {{message}}
+</div>
+
+{% endfor %}
+
+
+<table class="table table-dark">
+    <thead>
+      <tr>
+        <th scope="col"></th>
+        <th scope="col">Date</th>
+        <th scope="col">starting time</th>
+        <th scope="col">ending time</th>
+        <th scope="col">booking</th>
+      </tr>
+    </thead>
+    <tbody>
+        {% for xy in schedule_time %}
+      <tr>
+        <td scope="row">{{forloop.counter}}</td>
+        <td>{{xy.date}}</td>
+        <td>{{xy.starting_time}}</td>
+        <td>{{xy.ending_time}}</td>
+        <td>
+          <button><a href="{% url 'customers_booking' xy.id %}">booking</button>
+        </a>
+       </td>
+      </tr>
+      {% endfor %}
+    </table>
+
+                      
+   
+                          
+    {% endblock feedback %}
