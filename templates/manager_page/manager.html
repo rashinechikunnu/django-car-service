@@ -73,7 +73,7 @@
                         </div>
                     </div>
                     <a href=" {% url "m_v_customer_booking" %} " class="nav-item nav-link"><i class="fa fa-th me-2"></i>customer booking</a>
-                    <a href=" {% static 'form.html' %} " class="nav-item nav-link"><i class="fa fa-keyboard me-2"></i>Forms</a>
+                    <a href=" {% url "work_list" %} " class="nav-item nav-link"><i class="fa fa-keyboard me-2"></i>work list</a>
                     <a href=" {% static 'table.html' %} " class="nav-item nav-link"><i class="fa fa-table me-2"></i>Tables</a>
                     <a href=" {% static 'chart.html' %} " class="nav-item nav-link"><i class="fa fa-chart-bar me-2"></i>Charts</a>
                     <div class="nav-item dropdown">
@@ -198,7 +198,7 @@
             <div class="container-fluid pt-4 px-4">
                 <div class="bg-secondary text-center rounded p-4">
                     <div class="d-flex align-items-center justify-content-between mb-4">
-                        <h6 class="mb-0">Recent Salse</h6>
+                        
 
                         {% block manager_page %}
                         

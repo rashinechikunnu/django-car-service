@@ -36,7 +36,7 @@ class manager_data(models.Model):
         return self.Name
     
 
-
+#admin/customer
 class Feedback(models.Model):
     user = models.ForeignKey(Customer_data,on_delete=models.DO_NOTHING)
     text_me = models.TextField()
@@ -45,23 +45,52 @@ class Feedback(models.Model):
 
     def __str__(self):
         return self.text_me
-    
+ 
+#customer /admin 
 class shedules(models.Model):
     date = models.DateField()
     starting_time = models.TimeField()
     ending_time = models.TimeField()
 
-    
+    def __str__(self):
+        return self.starting_time
     
 
+    
+
+#customer/manager
 class customer_booking(models.Model):
     user= models.ForeignKey(Customer_data,on_delete=models.DO_NOTHING)
     schedule = models.ForeignKey(shedules,on_delete=models.DO_NOTHING)
     car_name = models.CharField(max_length=30)
     number_plate = models.CharField(max_length=15)
     status = models.IntegerField(default=0)
+
+    def __str__(self):
+        return self.car_name
     
 
+#admin/manager
+class create_work(models.Model):
+    Name_manager = models.ForeignKey(manager_data,on_delete=models.DO_NOTHING)
+    customer_booking_id= models.ForeignKey(customer_booking,on_delete=models.DO_NOTHING,null=True,blank=True)
+    vehicle_type =(
+                    ("sedan","sedan"),
+                    ("SUV","SUV"),
+                    ("hatchback","hatchback"),
+                    ("others","others")
+    )
+    vehicle = models.CharField(max_length=50,choices=vehicle_type,null=True,blank=True)
+
+    complaint_description = models.TextField(null=True,blank=True)
+    choice =(
+            ("Work started","Work started"),
+            ("Work on progres","work on progres"),
+            ("work compleated","work compleated"),
+    )
+    work_status = models.CharField(max_length=50,choices=choice,null=True,blank=True)
+    estimate_cost = models.CharField(max_length=20,null=True,blank=True)
+    
 
     
     

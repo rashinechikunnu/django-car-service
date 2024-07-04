@@ -1,0 +1,40 @@
+{% extends "admin_page/admin.html" %}
+
+{% block manager_list %}
+                      
+<table class="table table-dark">
+    <thead>
+      <tr>
+        
+        <th scope="col">No</th>
+        <th scope='col'>Name</th>
+        <th scope='col'>Car Name</th>
+        <th scope='col'>Date</th>
+        <th scope="col">Starting time</th>
+        <th scope="col">Create work</th>
+        
+        
+      </tr>
+    </thead>
+    <tbody>
+        {% for i  in approve_customer %}
+      <tr>
+        <td scope="row">{{forloop.counter}}</td>
+        <td>{{i.user.Name}}</td>
+        <td>{{i.car_name}}</td>
+        <td>{{i.schedule.date}}</td>
+        <td>{{i.schedule.starting_time}}</td>
+
+        <td><a href="{% url 'admin_add_managers_for_working' i.id %}"><button> create</button></a></td>
+        
+        
+
+       
+
+        
+       </td>
+      </tr>
+      {% endfor %}
+    </table>
+
+{% endblock manager_list %}

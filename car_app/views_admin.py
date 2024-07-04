@@ -1,6 +1,6 @@
 from django.shortcuts import render,redirect
-from .models import Feedback, manager_data,Customer_data,shedules
-from .forms import ManagerForms,LoginForms,sheduleForm
+from .models import Feedback, manager_data,Customer_data,shedules,create_work
+from .forms import ManagerForms,LoginForms,sheduleForm,customer_booking,working_Forms
 
 # admin page
 
@@ -134,7 +134,31 @@ def schedule_delete(request,pk):
         delt=shedules.objects.get(pk=pk)
         delt.delete()
         return redirect('schedule_views')
+
+
+def view_approved_customer(request):
+    approve_customer = customer_booking.objects.filter(status=1)
+
+
+    return render(request,'admin_page/approved_customer.html',{'approve_customer':approve_customer})
         
+
+def create_workers(request,pk):
+    car_names = customer_booking.objects.get(pk=pk)
+    # car_names.car_name
+    # print(car_names)
+    if request.method == 'POST':
+        work = working_Forms(request.POST)
+        if work.is_valid():
+            obj = work.save(commit = False)
+            obj.name_of_car = car_names
+            obj.save()
+            print(obj)
+    else:
+        work = working_Forms()
+    return render(request,"admin_page/admin_create_work.html",{"work":work})
+
+          
 
     
     

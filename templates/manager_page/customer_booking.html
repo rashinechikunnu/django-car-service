@@ -22,17 +22,24 @@
         
 
         <td>
-            {% if zx.status == 0 %}
-            <button>approve</button>/
-            <button>reject</button>
+
+        
+           {% if zx.status == 0 %}
+            <button><a href="{% url 'approved_manager' zx.id %}"> approve </a></button>
+
             
-            {% elif zx.status == 1 %}
-            <p>approve</p>
+        
+               
+            <button><a href="{% url 'rejected_manager' zx.id %}">reject</a></button>
+       
+          
+        {% elif zx.status == 1 %}
+            <p>approved</p>
             
             
-            {% else  %}
+            {% else %}
             
-            <p>reject</p>
+            <p>rejected</p>
             {% endif %} 
     
         </td>

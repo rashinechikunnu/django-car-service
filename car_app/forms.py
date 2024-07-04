@@ -1,4 +1,4 @@
-from .models import Login,Customer_data,manager_data,Feedback,shedules,customer_booking
+from .models import Login,Customer_data,manager_data,Feedback,shedules,customer_booking,create_work
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
  
@@ -69,6 +69,24 @@ class Customer_booking_Forms(forms.ModelForm):
         model = customer_booking
         fields ="__all__"
         exclude = ("user","schedule","status")
+
+
+#admin work creating
+class working_Forms(forms.ModelForm):
+    
+    class Meta:
+        model = create_work
+        fields = ('Name_manager',)
+
+# manager work creating
+class update_working_Forms(forms.ModelForm):
+    
+    class Meta:
+        model = create_work
+        fields = "__all__"
+        exclude = ("Name_manager","customer_booking_id")
+        
+
 
 
 

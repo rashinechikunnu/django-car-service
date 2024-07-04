@@ -1,0 +1,15 @@
+{% extends "manager_page/manager.html" %}
+{% load crispy_forms_tags %} 
+
+
+{% block manager_page %}
+   <form action="" method="post">
+    {% csrf_token %}
+    {{update_work|crispy}}
+    <button type="submit">update</button>
+   </form>                     
+                        
+                        
+{% endblock manager_page %}
+
+

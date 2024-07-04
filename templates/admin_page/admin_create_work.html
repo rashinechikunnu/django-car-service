@@ -1,0 +1,13 @@
+{% extends "admin_page/admin.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+
+{% block manager_list %}
+<form method="post" style="width: 100%; height: auto;">
+    {% csrf_token %}
+   
+{{work|crispy}}
+<button type="submit">submit</button>
+</form>
+{% endblock manager_list %}

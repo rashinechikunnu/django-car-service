@@ -2,7 +2,7 @@
 from django.shortcuts import render,redirect
 from .forms import CustomerForms,LoginForms
 from .forms import LoginForms,feedbackForms,Customer_booking_Forms
-from .models import Customer_data,Feedback,shedules,customer_booking
+from .models import Customer_data,Feedback,shedules,customer_booking,create_work
 from django.contrib import messages
 # customer page
 
@@ -112,3 +112,11 @@ def booking_views(request):
     booking_status = customer_booking.objects.filter(user=data)
 
     return render(request,"customer_page/booking_list.html",{'booking_status':booking_status})
+
+
+def work_status(request):
+    customer_user = request.user
+    work_users = Customer_data.objects.get( user= customer_user)
+
+    status_work = create_work.objects.filter(customer_booking_id__user=work_users)
+    return render(request,'customer_page/work_status.html',{'status_work':status_work})

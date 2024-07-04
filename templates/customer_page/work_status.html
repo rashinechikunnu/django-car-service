@@ -1,0 +1,33 @@
+{% extends "customer_page/customer.html" %}
+{% block feedback %}
+
+                        
+<table class="table table-dark" style="width: 100%; height: auto;">
+    <thead>
+      <tr>
+        <th scope="col">no</th>
+        <th scope="col">car</th>
+        <th scope="col">number palate</th>
+        <th scope="col">vehicle</th>
+        <th scope="col">complaint_description</th>
+        <th scope="col">work_status</th>
+        <th scope="col">estimate cost</th>
+      </tr>
+    </thead>
+    <tbody>
+        {% for sw in status_work %}
+      <tr>
+        <td scope="row">{{forloop.counter}}</td>
+        <td>{{sw.customer_booking_id}}</td>
+        <td>{{sw.customer_booking_id.number_plate}}</td>
+        <td>{{sw.vehicle}}</td>
+        <td>{{sw.complaint_description}}</td>
+        <td>{{sw.work_status}}</td>
+        <td>{{sw.estimate_cost}}</td>
+       
+      {% endfor %}
+    </table>                 
+                        
+
+                          
+{% endblock feedback %}
