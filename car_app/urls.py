@@ -34,6 +34,8 @@ urlpatterns = [
     path('apporved_customers',views_admin.view_approved_customer,name='apporved_customers'),
     #add manager booking customer
     path('admin_add_managers_for_working/<pk>',views_admin.create_workers,name='admin_add_managers_for_working'),
+    # work_status_view
+    path('show_working',views_admin.working_status_show,name='show_working'),
    
    
     # customer area
@@ -47,6 +49,8 @@ urlpatterns = [
     path('book_views',views_customer.booking_views,name='booking_list'),
     # customer work status
     path('work_status_view',views_customer.work_status,name="work_status_view"),
+    # payment
+    path('payments/<pk>',views_customer.payment,name='payments'),
 
 
 

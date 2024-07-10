@@ -151,12 +151,17 @@ def create_workers(request,pk):
         work = working_Forms(request.POST)
         if work.is_valid():
             obj = work.save(commit = False)
-            obj.name_of_car = car_names
+            obj.customer_booking_id = car_names
             obj.save()
             print(obj)
     else:
         work = working_Forms()
     return render(request,"admin_page/admin_create_work.html",{"work":work})
+
+
+def working_status_show(request):
+    work_status = create_work.objects.all()
+    return render(request,"admin_page/show_working_status.html",{'work_status':work_status})
 
           
 

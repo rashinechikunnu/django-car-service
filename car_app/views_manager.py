@@ -33,9 +33,12 @@ def status_reject(request,pk):
 
 def creat_work_view(request):
     work_user = request.user
-    work_users = manager_data.objects.get( user= work_user)
-
+    print(work_user)
+    work_users = manager_data.objects.get(user= work_user)
+    # car_details = customer_booking.objects.get(pk=pk)
+    
     work_view = create_work.objects.filter(Name_manager=work_users)
+    
     return render(request,'manager_page/work_view.html',{'work_view':work_view})
 
 def work_update(request,pk):

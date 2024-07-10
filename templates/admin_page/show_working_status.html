@@ -1,0 +1,33 @@
+{% extends "admin_page/admin.html" %}
+{% block manager_list %}
+                        
+<table class="table table-dark">
+    <thead>
+      <tr>
+        <th scope="col">no</th>
+        <th scope="col">car</th>
+        <th scope="col">number palate</th>
+        <th scope="col">vehicle</th>
+        <th scope="col">complaint_description</th>
+        <th scope="col">work_status</th>
+        <th scope="col">estimate cost</th>
+       
+
+      </tr>
+    </thead>
+    <tbody>
+        {% for wv in work_status %}
+      <tr>
+        <td scope="row">{{forloop.counter}}</td>
+        <td>{{wv.customer_booking_id}}</td>
+        <td>{{wv.customer_booking_id.number_plate}}</td>
+        <td>{{wv.vehicle}}</td>
+        <td>{{wv.complaint_description}}</td>
+        <td>{{wv.work_status}}</td>
+        <td>{{wv.estimate_cost}}</td>
+     
+       
+      {% endfor %}
+    </table>                 
+                        
+{% endblock manager_list %}

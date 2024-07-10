@@ -1,6 +1,7 @@
 from django.db import models
 # Create your models here.
 from django.contrib.auth.models import AbstractUser
+from django.core.validators import MinValueValidator, MaxValueValidator
 
 
 # LOGIN
@@ -60,8 +61,8 @@ class shedules(models.Model):
 
 #customer/manager
 class customer_booking(models.Model):
-    user= models.ForeignKey(Customer_data,on_delete=models.DO_NOTHING)
-    schedule = models.ForeignKey(shedules,on_delete=models.DO_NOTHING)
+    user= models.ForeignKey(Customer_data,on_delete=models.CASCADE)
+    schedule = models.ForeignKey(shedules,on_delete=models.CASCADE)
     car_name = models.CharField(max_length=30)
     number_plate = models.CharField(max_length=15)
     status = models.IntegerField(default=0)
@@ -72,8 +73,8 @@ class customer_booking(models.Model):
 
 #admin/manager
 class create_work(models.Model):
-    Name_manager = models.ForeignKey(manager_data,on_delete=models.DO_NOTHING)
-    customer_booking_id= models.ForeignKey(customer_booking,on_delete=models.DO_NOTHING,null=True,blank=True)
+    Name_manager = models.ForeignKey(manager_data,on_delete=models.CASCADE)
+    customer_booking_id= models.ForeignKey(customer_booking,on_delete=models.CASCADE,null=True,blank=True)
     vehicle_type =(
                     ("sedan","sedan"),
                     ("SUV","SUV"),
@@ -90,6 +91,17 @@ class create_work(models.Model):
     )
     work_status = models.CharField(max_length=50,choices=choice,null=True,blank=True)
     estimate_cost = models.CharField(max_length=20,null=True,blank=True)
+    payment_status=models.IntegerField(default=0)
+
+
+
+# payment
+
+class payment(models.Model):
+    work=models.ForeignKey(create_work,on_delete=models.CASCADE)
+    card_number = models.CharField(max_length=16)
+    cvv=models.CharField(max_length=3)
+    expiry_date = models.CharField(max_length=7)
     
 
     

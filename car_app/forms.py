@@ -1,4 +1,4 @@
-from .models import Login,Customer_data,manager_data,Feedback,shedules,customer_booking,create_work
+from .models import Login,Customer_data,manager_data,Feedback,shedules,customer_booking,create_work,payment
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
  
@@ -84,9 +84,34 @@ class update_working_Forms(forms.ModelForm):
     class Meta:
         model = create_work
         fields = "__all__"
-        exclude = ("Name_manager","customer_booking_id")
-        
+        exclude = ("Name_manager","customer_booking_id","payment_status")
 
+
+#payment
+def validate_integer(value):
+        try:
+            int(value)
+
+        except ValueError:
+            raise forms.ValidationError('This field must contain only digits.')
+        
+# def validate_card_number(value):
+#     if not value.isdigit():
+#         raise forms.ValidationError('Card number must contain only digits.')
+#     if len(value) > 16:
+#         raise forms.ValidationError('Card number must not exceed 16 digits.')
+    
+
+class paymentForms(forms.ModelForm):
+ 
+    card_number = forms.CharField(validators=[validate_integer], widget=forms.TextInput(attrs={'type':'number','maxlength':16,'placeholder':"please enter 16 digits card number"}))
+    
+    class Meta:
+        model = payment
+        fields = "__all__"
+        exclude = ('work',)
+
+    
 
 
 

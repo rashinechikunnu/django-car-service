@@ -7,6 +7,7 @@
       <tr>
         
         <th scope="col">No</th>
+       
         <th scope="col">starting time</th>
         <th scope="col">ending time</th>
         <th scope="col">approved/reject</button></th>
@@ -16,6 +17,7 @@
         {% for zx  in customer_book_view %}
       <tr>
         <td scope="row">{{forloop.counter}}</td>
+        
        
         <td>{{zx.schedule.starting_time}}</td>
         <td>{{zx.schedule.ending_time}}</td>

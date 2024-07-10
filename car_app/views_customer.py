@@ -1,7 +1,7 @@
 
 from django.shortcuts import render,redirect
 from .forms import CustomerForms,LoginForms
-from .forms import LoginForms,feedbackForms,Customer_booking_Forms
+from .forms import LoginForms,feedbackForms,Customer_booking_Forms,paymentForms
 from .models import Customer_data,Feedback,shedules,customer_booking,create_work
 from django.contrib import messages
 # customer page
@@ -120,3 +120,26 @@ def work_status(request):
 
     status_work = create_work.objects.filter(customer_booking_id__user=work_users)
     return render(request,'customer_page/work_status.html',{'status_work':status_work})
+
+
+
+def payment(request,pk):
+    c_work = create_work.objects.get(pk=pk)
+    if request.method == 'POST':
+        payform = paymentForms(request.POST)
+        if payform.is_valid():
+            obj1=payform.save(commit=False)
+            obj1.work = c_work
+            obj1.save() 
+            
+            c_work.payment_status = 1
+            c_work.save()
+            return redirect('work_status_view')
+            
+    else:
+        payform= paymentForms()
+    return render(request,"customer_page/payment.html",{"payform":payform})
+
+
+    
+  
