@@ -62,7 +62,11 @@ urlpatterns = [
     #show worikig list
     path('work list',views_manager.creat_work_view,name="work_list"),
     # manager update work
-    path('update_work/<pk>',views_manager.work_update,name='update_work')
+    path('update_work/<pk>',views_manager.work_update,name='update_work'),
+
+
+    # logout
+    path('log_out',views.log_out,name='log_out')
     
 
 

@@ -1,28 +1,26 @@
 from django.shortcuts import render,redirect
 from .forms import ManagerForms,LoginForms,update_working_Forms
 from .models import customer_booking,create_work,manager_data
-
+from django.contrib.auth.decorators import login_required
 
 def manager_page(request):
 
-   
-
-
-    
     return render(request,'manager_page/manager.html')
 
-
+@login_required(login_url='logIN')
 def customer_booking_list(request):
     customer_book_view = customer_booking.objects.all()
     
     return render(request,'manager_page/customer_booking.html',{'customer_book_view':customer_book_view})
 
+@login_required(login_url='logIN')
 def status_approved(request,pk):
     customer_book_view = customer_booking.objects.get(pk=pk)
     customer_book_view.status = 1
     customer_book_view.save()
     return redirect('m_v_customer_booking')
 
+@login_required(login_url='logIN')
 def status_reject(request,pk):
     customer_book_view = customer_booking.objects.get(pk=pk)
     customer_book_view.status = 2
@@ -30,7 +28,7 @@ def status_reject(request,pk):
     print(customer_book_view)
     return redirect('m_v_customer_booking')
 
-
+@login_required(login_url='logIN')
 def creat_work_view(request):
     work_user = request.user
     print(work_user)
@@ -41,6 +39,7 @@ def creat_work_view(request):
     
     return render(request,'manager_page/work_view.html',{'work_view':work_view})
 
+@login_required(login_url='logIN')
 def work_update(request,pk):
     work=create_work.objects.get(pk=pk)
     data = update_working_Forms(instance=work)

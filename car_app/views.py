@@ -33,5 +33,9 @@ def log_in(request):
             messages.info(request,'invalid username and password')
     return render(request,"login_page.html")
 
+def log_out(request):
+    logout(request)
+    return redirect('logIN')
+
 
 

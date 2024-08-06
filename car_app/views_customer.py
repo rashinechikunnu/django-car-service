@@ -4,6 +4,8 @@ from .forms import CustomerForms,LoginForms
 from .forms import LoginForms,feedbackForms,Customer_booking_Forms,paymentForms
 from .models import Customer_data,Feedback,shedules,customer_booking,create_work
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
+
 # customer page
 
 def customer_page(request):
@@ -36,7 +38,7 @@ def customer_account_creation(request):
     return render(request,"main_page.html",{'form1':form1,'form2':form2})
 
 
-
+@login_required(login_url='logIN')
 def feedback_customer(request):
     adduser = request.user
     data = Customer_data.objects.get(user = adduser)
@@ -55,7 +57,7 @@ def feedback_customer(request):
     return render(request,"customer_page/feedback.html",{'feed_back':feed_back})
 
 
-
+@login_required(login_url='logIN')
 def feedback_view(request):
     feedback_user = request.user
     fdb = Customer_data.objects.get(user=feedback_user)
@@ -64,12 +66,12 @@ def feedback_view(request):
     return render(request,'customer_page/feedback_views.html',{'feed_view':feed_view})
 
 
-
+@login_required(login_url='logIN')
 def schedule_time(request):
     schedule_time=shedules.objects.all()
     return render(request,'customer_page/schedule_time.html',{'schedule_time':schedule_time})
 
-
+@login_required(login_url='logIN')
 def booking_customer(request,pk):
     
     adduser1 = request.user
@@ -104,7 +106,7 @@ def booking_customer(request,pk):
 
     return render(request,"customer_page/c_booking.html",{"cust_booking":customer_books})
 
-
+@login_required(login_url='logIN')
 def booking_views(request):
     data = request.user
     data = Customer_data.objects.get(user=data)
@@ -113,7 +115,7 @@ def booking_views(request):
 
     return render(request,"customer_page/booking_list.html",{'booking_status':booking_status})
 
-
+@login_required(login_url='logIN')
 def work_status(request):
     customer_user = request.user
     work_users = Customer_data.objects.get( user= customer_user)
@@ -122,7 +124,7 @@ def work_status(request):
     return render(request,'customer_page/work_status.html',{'status_work':status_work})
 
 
-
+@login_required(login_url='logIN')
 def payment(request,pk):
     c_work = create_work.objects.get(pk=pk)
     if request.method == 'POST':
