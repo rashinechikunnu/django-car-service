@@ -3,12 +3,13 @@ from django.contrib.auth import authenticate,login,logout
 from django.contrib import messages
 # Create your views here.
 
+# home
 def home(request):
     
     return render(request,"main_page.html")
 
 
-
+# login
 def log_in(request):
     if request.method == "POST":
         user_name = request.POST.get('username')
@@ -33,6 +34,7 @@ def log_in(request):
             messages.info(request,'invalid username and password')
     return render(request,"login_page.html")
 
+# logout
 def log_out(request):
     logout(request)
     return redirect('logIN')
